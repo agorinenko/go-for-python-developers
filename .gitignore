@@ -1,5 +1,6 @@
 # IDE
 .idea/
+dist/
 
 # OS
 .DS_Store
