@@ -1,0 +1,1 @@
+../../../week-05/lesson-10/lecture.md

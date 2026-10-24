@@ -1,0 +1,10 @@
+# IDE
+.idea/
+
+# OS
+.DS_Store
+
+# MkDocs output and local tooling
+site/
+__pycache__/
+.venv/

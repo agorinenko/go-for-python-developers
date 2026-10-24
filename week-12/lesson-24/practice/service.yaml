@@ -1,0 +1,3 @@
+# TODO: Service ClusterIP для orders (лекция, раздел «Pod/Deployment/Service»).
+#   - selector по меткам пода (app: orders);
+#   - порт 80 → targetPort 8080.

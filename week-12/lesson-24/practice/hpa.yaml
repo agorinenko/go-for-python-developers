@@ -1,0 +1,4 @@
+# TODO: HPA для orders (лекция, раздел «HPA»).
+#   - scaleTargetRef: Deployment orders;
+#   - minReplicas: 2, maxReplicas: 10;
+#   - метрика Resource/cpu, averageUtilization: 60.

@@ -1,0 +1,66 @@
+site_name: Go для промышленной разработки
+site_description: Курс по Go для опытных разработчиков — от доменной модели до Kubernetes
+site_author: Anton Gorinenko
+site_url: https://agorinenko.github.io/go-for-python-developers/
+repo_url: https://github.com/agorinenko/go-for-python-developers
+repo_name: agorinenko/go-for-python-developers
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+
+docs_dir: docs
+
+nav:
+  - Обзор курса: index.md
+  - Сквозной проект (капстоун): CAPSTONE.md
+  - Неделя 1. Инструментарий и идиоматика:
+      - Урок 1. Тулчейн и структура проекта: week-01/lesson-01/lecture.md
+      - Урок 2. Значения, nil и ошибки: week-01/lesson-02/lecture.md
+  - Неделя 2. Контракты и тестирование:
+      - Урок 3. Интерфейсы и композиция: week-02/lesson-03/lecture.md
+      - Урок 4. Тестирование в Go: week-02/lesson-04/lecture.md
+  - Неделя 3. Конкурентность. Фундамент:
+      - Урок 5. Горутины и планировщик: week-03/lesson-05/lecture.md
+      - Урок 6. Каналы и select: week-03/lesson-06/lecture.md
+  - Неделя 4. Синхронизация и context:
+      - Урок 7. sync и гонки данных: week-04/lesson-07/lecture.md
+      - Урок 8. context — отмена и дедлайны: week-04/lesson-08/lecture.md
+  - Неделя 5. HTTP API:
+      - Урок 9. HTTP-сервер на Go: week-05/lesson-09/lecture.md
+      - Урок 10. JSON, DTO, валидация, ошибки: week-05/lesson-10/lecture.md
+  - Неделя 6. PostgreSQL:
+      - Урок 11. SQL в Go: week-06/lesson-11/lecture.md
+      - Урок 12. Миграции и интеграционные тесты: week-06/lesson-12/lecture.md
+  - Неделя 7. gRPC и микросервисы:
+      - Урок 13. gRPC и protobuf: week-07/lesson-13/lecture.md
+      - Урок 14. Надёжные вызовы между сервисами: week-07/lesson-14/lecture.md
+  - Неделя 8. События:
+      - Урок 15. Kafka — событийная шина: week-08/lesson-15/lecture.md
+      - Урок 16. Transactional outbox и saga: week-08/lesson-16/lecture.md
+  - Неделя 9. Производительность:
+      - Урок 17. Память и аллокации: week-09/lesson-17/lecture.md
+      - Урок 18. Бенчмарки и профилирование: week-09/lesson-18/lecture.md
+  - Неделя 10. Observability:
+      - Урок 19. Структурное логирование (slog): week-10/lesson-19/lecture.md
+      - Урок 20. Метрики и трейсинг: week-10/lesson-20/lecture.md
+  - Неделя 11. Устойчивость под нагрузкой:
+      - Урок 21. Rate limiting и backpressure: week-11/lesson-21/lecture.md
+      - Урок 22. Кэширование и масштабирование: week-11/lesson-22/lecture.md
+  - Неделя 12. Эксплуатация:
+      - Урок 23. Docker для Go: week-12/lesson-23/lecture.md
+      - Урок 24. Kubernetes и CI/CD: week-12/lesson-24/lecture.md

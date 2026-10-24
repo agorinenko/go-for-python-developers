@@ -1,0 +1,1 @@
+../../../week-03/lesson-06/lecture.md

@@ -1,0 +1,21 @@
+-- Миграция 0002: таблица outbox (transactional outbox, неделя 8).
+--
+-- TODO: напиши DDL по контракту CAPSTONE.md (раздел «Неделя 6», таблица
+-- outbox) между аннотациями goose:
+--
+--     id            bigserial PRIMARY KEY
+--     event_id      uuid NOT NULL
+--     event_type    text NOT NULL
+--     payload       jsonb NOT NULL
+--     created_at    timestamptz NOT NULL
+--     published_at  timestamptz        -- NULL = «ещё не опубликовано»;
+--                                       -- специально без NOT NULL:
+--                                       -- NULL здесь — признак, а не ошибка
+--
+-- В Down — DROP TABLE outbox.
+
+-- +goose Up
+-- TODO: CREATE TABLE outbox (...);
+
+-- +goose Down
+-- TODO: DROP TABLE outbox;

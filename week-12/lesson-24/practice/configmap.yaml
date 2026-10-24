@@ -1,0 +1,3 @@
+# TODO: ConfigMap с конфигурацией приложения (лекция, раздел «ConfigMap и Secret»).
+#   - data.HTTP_ADDR (например, ":8080");
+#   - data.DB_DSN — плейсхолдер DSN PostgreSQL (реальные секреты — в Secret, не сюда).

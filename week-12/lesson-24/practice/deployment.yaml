@@ -1,0 +1,8 @@
+# TODO: Deployment сервиса orders (лекция, разделы «Pod/Deployment/Service», «Probes», «Resources»).
+# Контракт, который проверяет validate_test.go:
+#   - name: orders, replicas: 2;
+#   - контейнер с тремя пробами: livenessProbe (httpGet /healthz, periodSeconds 10),
+#     readinessProbe (httpGet /readyz), startupProbe (httpGet /healthz);
+#   - resources с requests и limits (CPU/memory);
+#   - securityContext (не root);
+#   - containerPort 8080, image — orders (в капстоуне — тег по git SHA).

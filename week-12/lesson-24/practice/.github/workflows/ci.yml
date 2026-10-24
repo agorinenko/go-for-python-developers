@@ -1,0 +1,7 @@
+# TODO: CI/CD пайплайн (лекция, раздел «CI/CD для Go»).
+# Контракт, который проверяет validate_test.go:
+#   - триггеры: push (main) и pull_request;
+#   - job со шагами, в имени/run/uses которых есть: lint, test, build, docker
+#     (например: golangci-lint → go test -race ./... → go build → docker build/push);
+#   - setup-go с go-version "1.25" и кэшем модулей;
+#   - docker build/push — только на main (тег по git SHA, не latest).

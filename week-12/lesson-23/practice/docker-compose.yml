@@ -1,0 +1,6 @@
+# TODO: docker-compose всей системы капстоуна (лекция, раздел «docker-compose»).
+# Контракт, который проверяет validate_test.go:
+#   - сервисы: orders, postgres (postgres:16-alpine), redpanda, redis (redis:7-alpine);
+#   - у postgres и redis есть healthcheck (pg_isready / redis-cli ping);
+#   - у postgres есть volume для данных;
+#   - порты и environment (DB_DSN, KAFKA_BROKERS, REDIS_ADDR и т.п.) — по контракту CAPSTONE.md.

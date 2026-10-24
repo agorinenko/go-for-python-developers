@@ -1,0 +1,62 @@
+// Контракт gRPC сервиса заказов — CAPSTONE.md, неделя 7.
+// В капстоуне этот файл кладётся в api/orders/v1/orders.proto, и из него
+// через buf/protoc генерируется код (internal/grpcapi). В этой практике
+// генерация заменена рукописным эквивалентом в пакете grpcapi, но
+// контракт — один и тот же: поле-в-поле соответствует grpcapi/messages.go.
+
+syntax = "proto3";
+
+package orders.v1;
+
+option go_package = "orders/api/orders/v1;ordersv1";
+
+service OrdersService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+  rpc ListOrders(ListOrdersRequest) returns (stream OrderResponse); // server-streaming
+}
+
+message CreateOrderRequest {
+  message Item {
+    string product_id = 1;
+    int32 quantity = 2;
+    int64 price = 3; // в копейках
+  }
+
+  string customer_id = 1;
+  repeated Item items = 2;
+}
+
+message CreateOrderResponse {
+  OrderResponse order = 1;
+}
+
+message GetOrderRequest {
+  string id = 1;
+}
+
+message GetOrderResponse {
+  OrderResponse order = 1;
+}
+
+message ListOrdersRequest {
+  string customer_id = 1;
+  string status = 2;
+  int32 limit = 3;
+}
+
+message OrderResponse {
+  message Item {
+    string product_id = 1;
+    string name = 2;
+    int32 quantity = 3;
+    int64 price = 4; // в копейках
+  }
+
+  string id = 1;
+  string customer_id = 2;
+  repeated Item items = 3;
+  string status = 4;
+  int64 total = 5;
+  string created_at = 6; // RFC 3339; в сгенерированном коде — google.protobuf.Timestamp
+}
