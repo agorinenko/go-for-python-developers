@@ -7,7 +7,7 @@
 
 Пакет `domain` — минимальная копия доменной модели недели 1 (типы, статусы,
 sentinel-ошибки, интерфейсы, `ApplyStatus`). Код ГОТОВЫЙ, менять не нужно:
-в капстоуне его заменит настоящий `orders/internal/domain`.
+в итоговом проекте его заменит настоящий `orders/internal/domain`.
 
 ## Задание
 
@@ -48,9 +48,9 @@ go test ./...
 
 Всё зелёное.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
-1. В `orders/internal/domain/` капстоуна добавьте из практики
+1. В `orders/internal/domain/` итогового проекта добавьте из практики
    `domain.ListFilter`, интерфейсы `OrderRepository` и `OrderValidator`
    (контракт недели 2 из CAPSTONE.md — теперь они «заморожены»).
 2. Создайте `orders/internal/service/service.go`: скопируйте
@@ -58,4 +58,4 @@ go test ./...
    `orders/internal/domain`.
 3. Скопируйте `service/service_test.go` в `orders/internal/service/`,
    исправив импорты. Фейки остаются в тестовом файле.
-4. Добейтесь `go test ./...` в капстоуне.
+4. Добейтесь `go test ./...` в итоговом проекте.

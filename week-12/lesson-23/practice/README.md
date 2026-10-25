@@ -10,12 +10,12 @@
    «Multi-stage build»):
    - builder: `golang:1.25-alpine`; сначала `COPY go.mod go.sum` + `go mod download`,
      затем остальной код;
-   - сборка с `CGO_ENABLED=0` (статический бинарь), рекомендуется
+   - сборка с `CGO_ENABLED=0` (статический исполняемый файл), рекомендуется
      `-trimpath` и `-ldflags="-s -w"`;
    - final: `gcr.io/distroless/static-debian12:nonroot` **или** `scratch`
      (в scratch не забудьте не-root пользователя);
-   - `EXPOSE 8080`, `ENTRYPOINT` — бинарь `./cmd/orders`.
-2. **`docker-compose.yml`** — вся система капстоуна (лекция, раздел
+   - `EXPOSE 8080`, `ENTRYPOINT` — исполняемый файл `./cmd/orders`.
+2. **`docker-compose.yml`** — вся система итогового проекта (лекция, раздел
    «docker-compose»):
    - сервисы `orders`, `postgres` (`postgres:16-alpine`), `redpanda`,
      `redis` (`redis:7-alpine`);
@@ -49,15 +49,15 @@ docker compose build orders            # собрать образ сервис�
 docker compose up --build              # вся система
 ```
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `Dockerfile` в `orders/deployments/docker/Dockerfile`
    (поправьте контекст: сборка из корня `orders/`).
 2. Скопируйте `docker-compose.yml` в `orders/deployments/docker/` и расширьте
-   его: топики/миграции капстоуна (недели 6–8) — например, команда применения
+   его: топики/миграции итогового проекта (недели 6–8) — например, команда применения
    миграций перед стартом orders или init-контейнер.
 3. Создайте `orders/.dockerignore` (`.git`, `bin/`, `*.md`, `.env`,
    `**/*_test.go`).
-4. Проверьте в капстоуне: `docker compose config` без ошибок, `docker compose
+4. Проверьте в итоговом проекте: `docker compose config` без ошибок, `docker compose
    up --build` — orders стартует только после `service_healthy` postgres,
    `POST /v1/orders` отвечает 201.

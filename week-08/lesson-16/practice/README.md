@@ -11,7 +11,7 @@
 Контракт таблицы outbox заморожен в [CAPSTONE.md](../../../CAPSTONE.md),
 неделя 6: `outbox` (`id bigserial PK`, `event_id uuid`, `event_type text`,
 `payload jsonb`, `published_at timestamptz NULL` = ещё не опубликовано).
-Публикация в капстоуне — только через outbox (неделя 8).
+Публикация в итоговом проекте — только через outbox (неделя 8).
 
 ## Задание
 
@@ -41,7 +41,7 @@ go test ./...
 
 Всё зелёное. Тесты не требуют Kafka и БД — хранилище и транспорт фейковые.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `outbox/outbox.go` в `orders/internal/events/outbox.go`
    (пакет `events`): тип `Message` дополните полями из полной схемы
@@ -51,7 +51,7 @@ go test ./...
      LIMIT $1`;
    - `MarkPublished`: `UPDATE outbox SET published_at = now()
      WHERE id = ANY($1)`.
-2. В `CreateOrder` капстоуна замените прямую публикацию (урок 15) на запись
+2. В `CreateOrder` итогового проекта замените прямую публикацию (урок 15) на запись
    в outbox **в той же транзакции**, что и заказ.
 3. `dedupe/dedupe.go` перенесите в сагу `payments` (сервис-консьюмер из
    CAPSTONE.md): перед обработкой события проверяйте

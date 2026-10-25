@@ -1,6 +1,6 @@
 # Практика. Урок 14: надёжные вызовы — retry и circuit breaker
 
-Пакет `resilient` — примитивы для межсервисных вызовов. В капстоуне это
+Пакет `resilient` — примитивы для межсервисных вызовов. В итоговом проекте это
 `orders/internal/client/catalog` (контракт «Неделя 7»): gRPC-клиент
 сервиса каталога, обёрнутый этими примитивами. Только стандартная
 библиотека.
@@ -35,10 +35,10 @@ go test ./...
 
 Всё зелёное.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `resilient/resilient.go` (и тесты) в
-   `orders/internal/client/catalog/` капстоуна — пакет
+   `orders/internal/client/catalog/` итогового проекта — пакет
    `clientcatalog` (или оставьте пакет `resilient` рядом, как удобнее).
 2. Напишите gRPC-клиент каталога из сгенерированного
    `api/catalog/v1/catalog.proto` (`GetProduct`) и оберните вызов:
@@ -46,6 +46,6 @@ go test ./...
    ошибок (Unavailable, DeadlineExceeded — не 4xx-кодов) и
    `CircuitBreaker` с порогом 5 и openTimeout 30s, shared на всех
    вызовах.
-3. Все вызовы — с дедлайном (`context.WithTimeout`) и пробросом
+3. Все вызовы — с крайним сроком (`context.WithTimeout`) и пробросом
    контекста HTTP/gRPC-запроса. Добейтесь `go test ./... && go vet ./...`
-   в капстоуне.
+   в итоговом проекте.

@@ -1,6 +1,6 @@
 # Практика. Урок 21: rate limiting и backpressure
 
-Пакет `ratelimit` — будущий `orders/internal/ratelimit` капстоуна. Контракт
+Пакет `ratelimit` — будущий `orders/internal/ratelimit` итогового проекта. Контракт
 (интерфейс `Limiter`, сигнатуры `NewTokenBucket`, `NewMiddleware`, `RunWithLimit`)
 зафиксирован: менять его нельзя.
 
@@ -36,17 +36,17 @@ go test ./...
 burst-поведением (rate 1000/с, burst 2 — третий вызов отклонён), лимит
 одновременности — атомарным счётчиком, а не таймерами.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Создайте `orders/internal/ratelimit/` и скопируйте туда `ratelimit/limiter.go`
    (пакет остаётся `ratelimit`, импорты не меняются).
 2. Добавьте зависимости `golang.org/x/time` и `golang.org/x/sync` в
-   `orders/go.mod` (`go mod tidy` внутри капстоуна).
+   `orders/go.mod` (`go mod tidy` внутри итогового проекта).
 3. В `orders/internal/httpapi` вставьте middleware в цепочку **после recovery,
    до маршрутизатора**; ключ лимитера — IP клиента (`r.RemoteAddr`), бюджет —
    из конфига (`ratePerSec`, `burst`), в тестах httpapi используйте фейковый
    `Limiter` (`allowAll`/`denyAll` из практики).
 4. Перенесите `RunWithLimit` в сервисный слой: ограничьте конкурентную
    валидацию позиций (неделя 3) значением из конфига.
-5. Проверьте в капстоуне: `go test ./...` зелёный, 429 отдаётся с
+5. Проверьте в итоговом проекте: `go test ./...` зелёный, 429 отдаётся с
    `Retry-After` и единой схемой ошибки `{"error": {...}}` (неделя 5).

@@ -1,6 +1,6 @@
 # Практика. Урок 11: SQL в Go — репозиторий заказов на database/sql
 
-Пакет `repository` — реализация `domain.OrderRepository` капстоуна
+Пакет `repository` — реализация `domain.OrderRepository` итогового проекта
 (контракт «Неделя 6»: `internal/storage/postgres`) поверх `*sql.DB`.
 Тесты — на `go-sqlmock` (эмуляция драйвера БД в памяти, без реального
 PostgreSQL; против реальной БД будем тестировать в уроке 12).
@@ -9,7 +9,7 @@ PostgreSQL; против реальной БД будем тестировать
 
 Две таблицы — заказ и позиции отдельно (а не JSON-поле в orders):
 отдельная таблица честнее с точки зрения SQL (индексы по позициям,
-референциальная целостность) и совпадает с подходом капстоуна.
+референциальная целостность) и совпадает с подходом итогового проекта.
 
 ```sql
 CREATE TABLE orders (
@@ -30,7 +30,7 @@ CREATE TABLE order_items (
 ```
 
 `domain` — готовая учебная копия (недели 1–2). `domain.ListFilter` здесь
-в `domain`; в капстоуне он объявлен в `internal/service` — при переносе
+в `domain`; в итоговом проекте он объявлен в `internal/service` — при переносе
 замените тип (поля те же).
 
 ## Задание
@@ -61,12 +61,12 @@ go test ./...
 
 Всё зелёное.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `repository/repository.go` в `orders/internal/storage/postgres/`
-   капстоуна, заменив импорт `practice/domain` → `orders/internal/domain`
+   итогового проекта, заменив импорт `practice/domain` → `orders/internal/domain`
    и `domain.ListFilter` → `service.ListFilter` в сигнатуре `List`.
-2. В капстоуне замените `*sql.DB` на `*pgxpool.Pool` (лекция, раздел
+2. В итоговом проекте замените `*sql.DB` на `*pgxpool.Pool` (лекция, раздел
    «pgx/pgxpool»): сигнатуры методов не меняются, меняется тип поля и
    вызовы — `pgxpool` сам предоставляет `Exec/Query/QueryRow` с
    контекстом и плейсхолдерами `$1` (как `database/sql`, но без

@@ -1,6 +1,6 @@
 # Практика. Урок 19: структурное логирование с slog
 
-Пакет `logging` — основа observability капстоуна (CAPSTONE.md, неделя 10:
+Пакет `logging` — основа observability итогового проекта (CAPSTONE.md, неделя 10:
 `internal/telemetry/log`):
 
 - `NewLogger` — готовый JSON-логгер с уровнем;
@@ -37,7 +37,7 @@ go test ./...
 
 Всё зелёное.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `logging/logging.go` в `orders/internal/telemetry/log/`
    (пакет `log`), импорты `practice/...` не нужны — пакет самодостаточен.

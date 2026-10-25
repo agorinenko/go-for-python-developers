@@ -8,7 +8,7 @@
 - увидеть место testify (`assert`/`require`) в индустриальном Go;
 - относиться к покрытию как к инструменту, а не к цели.
 
-## Задача из капстоуна
+## Задача из итогового проекта
 
 `OrderService` написан на прошлом уроке поверх интерфейсов — теперь он должен
 быть **покрыт тестами как продакшен-код**: полное покрытие веток, фейковый
@@ -237,7 +237,7 @@ fakes/spies.
 8. **Моки, проверяющие каждое движение** — тест прибит к реализации; рефактор
    ломает всё. Проверяйте поведение, взаимодействие — только по контракту.
 
-## Что делаем в капстоуне
+## Что делаем в итоговом проекте
 
 1. Подключаем `testify` в модуль `orders`.
 2. Переписываем тесты `OrderService` (урок 3) в стиле практики: table-driven,
@@ -253,3 +253,7 @@ fakes/spies.
 - [testify documentation](https://pkg.go.dev/github.com/stretchr/testify) — assert/require.
 - [Martin Fowler: Mocks Aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html).
 - [Coverage profiling](https://go.dev/blog/cover) — coverprofile, html-отчёты.
+
+## Домашнее задание
+
+[Практика к уроку — шаблон с тестами](practice/README.md)

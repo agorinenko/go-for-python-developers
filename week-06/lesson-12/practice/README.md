@@ -35,10 +35,10 @@ go test ./...
 
 Всё зелёное (при работающем Docker — без skip).
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `migrations/` (включая `0002` с вашим DDL и
-   `migrations.go` с embed) в `orders/internal/migrations/` капстоуна —
+   `migrations.go` с embed) в `orders/internal/migrations/` итогового проекта —
    это контракт «Неделя 6» (плюс outbox, который задействует неделя 8).
 2. Скопируйте `repository/repository.go` в
    `orders/internal/storage/postgres/`, заменив `practice/domain` →
@@ -46,8 +46,8 @@ go test ./...
    и переведите на `pgxpool` (лекция урока 11): поле `pool *pgxpool.Pool`,
    вызовы без `Context`-суффиксов. Юнит-тесты урока 11 перенесите туда же
    (они на sqlmock, отдельно от интеграционных).
-3. Перенесите `integration_test.go` в пакет `postgres` капстоуна
+3. Перенесите `integration_test.go` в пакет `postgres` итогового проекта
    (в `orders/internal/storage/postgres/`), заменив импорты; в
    `Makefile` добавьте цель `test-integration: go test ./internal/...`.
-   Итог: `make test` в капстоуне гоняет юнит- и интеграционные тесты
+   Итог: `make test` в итоговом проекте гоняет юнит- и интеграционные тесты
    против контейнера.

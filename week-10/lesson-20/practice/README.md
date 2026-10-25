@@ -1,6 +1,6 @@
 # Практика. Урок 20: метрики и трейсинг
 
-Пакет `metrics` — RED-метрики HTTP API капстоуна (CAPSTONE.md, неделя 10:
+Пакет `metrics` — RED-метрики HTTP API итогового проекта (CAPSTONE.md, неделя 10:
 `internal/telemetry/metrics` + эндпоинт `/metrics`):
 
 - `orders_http_requests_total` — counter, метки `method`, `status`;
@@ -38,7 +38,7 @@ go test ./...
 
 Всё зелёное.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `metrics/metrics.go` в `orders/internal/telemetry/metrics/`
    (пакет `metrics`).

@@ -5,7 +5,7 @@
 - `events` — доменные события и продюсер: тип `Event`, интерфейс `Transport`,
   `Publisher` с методом `PublishOrderCreated`;
 - `domain` — готовая минимальная копия доменной модели заказа (каноническая —
-  в капстоуне, `orders/internal/domain`);
+  в итоговом проекте, `orders/internal/domain`);
 - `kafkatransport` — реализация `Transport` поверх `kafka-go`.
 
 Контракт события заморожен в [CAPSTONE.md](../../../CAPSTONE.md), раздел
@@ -96,12 +96,12 @@ docker exec redpanda rpk topic consume orders.created \
 по ключу; два сообщения с одинаковым `order_id` уходят в одну партицию —
 порядок обработки в рамках ключа сохранён.
 
-## Перенос в капстоун
+## Перенос в итоговый проект
 
 1. Скопируйте `events/events.go` в `orders/internal/events/events.go`,
    переименуйте пакет в `events`, замените импорт `practice/domain` на
    `orders/internal/domain` (копию `domain/` из практики **не** переносите —
-   в капстоуне домен уже есть).
+   в итоговом проекте домен уже есть).
 2. Скопируйте `kafkatransport/kafka_transport.go` в
    `orders/internal/events/kafka_transport.go` (пакет остаётся `events` —
    отдельный пакет не нужен).
@@ -109,7 +109,7 @@ docker exec redpanda rpk topic consume orders.created \
 4. В `cmd/orders/main.go` создайте `kafka.Writer` (адрес из конфига,
    `Balancer: &kafka.Hash{}`), соберите `Publisher` и передайте его в сервисный
    слой: вызывайте `PublishOrderCreated` после успешного сохранения заказа.
-5. Запустите тесты капстоуна: `go test ./...`.
+5. Запустите тесты итогового проекта: `go test ./...`.
 
 Обратите внимание: на следующем уроке публикация «в лоб» будет заменена на
 transactional outbox (CAPSTONE.md, неделя 8 — публикация только через таблицу

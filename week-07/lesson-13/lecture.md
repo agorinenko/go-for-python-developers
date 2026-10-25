@@ -9,7 +9,7 @@
   ошибок в коды статусов;
 - оценить, когда gRPC оправдан, а когда это избыточная сложность.
 
-## Задача из капстоуна
+## Задача из итогового проекта
 
 Контракт «Неделя 7» (CAPSTONE.md): `api/orders/v1/orders.proto` с
 сервисом `OrdersService` (`CreateOrder`, `GetOrder`, `ListOrders` —
@@ -68,7 +68,7 @@ message OrderResponse {
 ## Генерация кода: buf/protoc
 
 Из `.proto` генерируется код: сообщения → структуры с методами
-сериализации; сервис → интерфейс `OrdersServiceServer`, glue-хэндлеры
+сериализации; сервис → интерфейс `OrdersServiceServer`, glue-обработчики
 (распаковка запроса → вызов метода → упаковка ответа), `ServiceDesc`
 для регистрации и клиент `OrdersServiceClient`. В практике урока этот
 слой заменён рукописным эквивалентом, но правило одно: **сгенерированное
@@ -126,7 +126,7 @@ func mapOrderError(err error) error {
 }
 ```
 
-`status.FromContextError` — правильный способ вернуть отмену/дедлайн:
+`status.FromContextError` — правильный способ вернуть отмену/крайний срок:
 код `Canceled`/`DeadlineExceeded` выставляется самим gRPC по факту
 отмены. Клиент достаёт код через `status.Code(err)` — не сравнивайте
 строки и не полагайтесь на `err.Error()`.
@@ -170,7 +170,7 @@ func (s *Server) ListOrders(req *ListOrdersRequest, stream OrdersService_ListOrd
   В JSON контракт — это «OpenAPI, если повезло»; в gRPC он физически не
   может разойтись с кодом.
 - **HTTP/2 из коробки**: мультиплексирование (десятки потоков на одном
-  соединении), дедлайны, отмена — всё это штатный транспорт, а не
+  соединении), крайние сроки, отмена — всё это штатный транспорт, а не
   надстройка.
 - **Streaming** — first-class: client-, server-, bidirectional.
 
@@ -178,7 +178,7 @@ func (s *Server) ListOrders(req *ListOrdersRequest, stream OrdersService_ListOrd
 curl и браузер — JSON/REST проще), браузерный фронтенд (нужен grpc-web
 прокси), команда без опыта protobuf-тулинга. Классическая раскладка:
 внешний REST (неделя 5) + внутренний gRPC между сервисами (orders →
-catalog) — ровно как в капстоуне.
+catalog) — ровно как в итоговом проекте.
 
 ## Go vs Python: grpcio и aiohttp
 
@@ -197,7 +197,7 @@ Python-стек тот же по форме: `.proto` → генерация (`g
   параллелизмом. В Python важно не заснуть в event loop — асинхронные
   методы обязательны, иначе весь сервис встанет.
 - Коды статусов те же (`grpc.StatusCode.NOT_FOUND`) — протокол общий,
-  меняется только рантайм.
+  меняется только среда выполнения.
 - Альтернатива «Python: aiohttp + JSON» — это REST-вариант; контракт
   типов придётся нести отдельно (pydantic + ручная дисциплина), тогда
   как в gRPC он — из proto.
@@ -223,7 +223,7 @@ Python-стек тот же по форме: `.proto` → генерация (`g
 6. **Возвращать `nil` как «ок» из стрима** — правильно; возвращать
    ошибку, чтобы «просто закрыть поток», — нет: клиент получит код
    ошибки вместо `io.EOF`.
-7. **Дедлайны не заданы.** gRPC не выставляет дедлайны сам: без
+7. **Дедлайны не заданы.** gRPC не выставляет крайние сроки сам: без
    `context.WithTimeout` на клиенте серверный вызов может висеть вечно.
    Подробно — урок 14.
 8. **`repeated` для больших списков в unary.** Десятки тысяч элементов в
@@ -234,7 +234,7 @@ Python-стек тот же по форме: `.proto` → генерация (`g
 10. **Забыть `buf breaking` в CI.** Контракт «защищён» только пока его
     ломающие изменения кто-то ловит автоматически.
 
-## Что делаем в капстоуне
+## Что делаем в итоговом проекте
 
 1. `orders/api/orders/v1/orders.proto` — контракт из практики; `buf.yaml`
    с `buf lint` + `buf breaking`, генерация в `internal/grpcapi`.
@@ -253,3 +253,7 @@ Python-стек тот же по форме: `.proto` → генерация (`g
 - [gRPC status codes](https://grpc.io/docs/guides/status-codes/) — семантика кодов.
 - [timestamppb](https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb) — Timestamp в Go.
 - [grpcurl](https://github.com/fullstorydev/grpcurl) — отладка без написания клиента.
+
+## Домашнее задание
+
+[Практика к уроку — шаблон с тестами](practice/README.md)
