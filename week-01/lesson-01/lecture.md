@@ -234,6 +234,7 @@ lint:
 - [Effective Go](https://go.dev/doc/effective_go) — идиоматика.
 - [CodeReviewComments](https://go.dev/wiki/CodeReviewComments) — чек-лист ревью.
 - [golangci-lint](https://golangci-lint.run) — документация линтеров.
+- [Add a test](https://go.dev/doc/tutorial/add-a-test) — официальная документация по написанию тестов.
 
 ## Домашнее задание
 
