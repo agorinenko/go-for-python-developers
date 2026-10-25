@@ -142,7 +142,26 @@ orders/
   набор: `errcheck` (непроглоченные ошибки), `govet`, `staticcheck` (глубокий
   статический анализ), `ineffassign`, `unused`, `revive` (стиль, заменяет golint),
   `misspell`. Конфиг — `.golangci.yml` в корне, версия линтера закрепляется, чтобы
-  CI не начал «краснеть» из-за обновления.
+  CI не начал «краснеть» из-за обновления. Готовый конфиг для итогового проекта
+  (формат golangci-lint v2, проверен на v2.15):
+
+  ```yaml
+  version: "2"
+
+  linters:
+    default: none
+    enable:
+      - errcheck
+      - govet
+      - ineffassign
+      - staticcheck
+      - unused
+      - revive
+      - misspell
+  ```
+
+  Для старого golangci-lint v1 тот же смысл записывается иначе: без строки
+  `version`, а вместо `default: none` — `disable-all: true`.
 
 **Python:** связка `black` + `ruff` + `mypy` решает ту же задачу, но из нескольких
 инструментов с настройкой. В Go одна команда `go vet` встроена, вторая

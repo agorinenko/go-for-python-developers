@@ -5,7 +5,6 @@ package refactor
 
 import (
 	"fmt"
-	"sort"
 	"strconv"
 )
 
@@ -51,7 +50,7 @@ func SumQuantities(rows []string) int {
 	for _, row := range rows {
 		n, err := strconv.Atoi(row)
 		if err != nil {
-			return 0
+			total = total + 0
 		}
 		total = total + n
 	}
@@ -66,20 +65,20 @@ func SumQuantities(rows []string) int {
 //  3. map[string]interface{} там, где достаточно map[string]float64.
 func ProcessItems(items []Item) map[string]float64 {
 	// мутируем вход — так делать нельзя
-	sort.Slice(items, func(i, j int) bool { return items[i].Name < items[j].Name })
+	//sort.Slice(items, func(i, j int) bool { return items[i].Name < items[j].Name })
 
-	data := make(map[string]interface{})
+	data := make(map[string]float64)
 	for _, it := range items {
 		var current float64
-		if v, ok := data[it.Name].(float64); ok {
+		if v, ok := data[it.Name]; ok {
 			current = v
 		}
-		data[it.Name] = current + it.Price
+		data[it.Name] = current + it.Price*float64(it.Count)
 	}
 
 	result := make(map[string]float64, len(data))
 	for name, v := range data {
-		result[name] = v.(float64)
+		result[name] = v
 	}
 	return result
 }
