@@ -4,6 +4,8 @@ package orders
 
 import (
 	"errors"
+	"fmt"
+	"strings"
 	"time"
 )
 
@@ -56,7 +58,18 @@ var (
 func NewOrder(id, customerID string, items []OrderItem) (*Order, error) {
 	// TODO: реализуй. Сейчас возвращается «сырой» заказ без валидации —
 	// тесты на ошибки падают именно поэтому.
-	return &Order{ID: id, CustomerID: customerID, Items: items, Status: StatusNew}, nil
+	var order = Order{
+		ID:         id,
+		CustomerID: customerID,
+		Items:      items,
+		Status:     StatusNew,
+		CreatedAt:  time.Now(),
+	}
+	if err := order.Validate(); err != nil {
+		return nil, fmt.Errorf("validate order %s: %w", order.ID, err)
+	}
+	order.RecalcTotal()
+	return &order, nil
 }
 
 // Validate проверяет инварианты заказа: непустой CustomerID, есть позиции,
@@ -65,6 +78,26 @@ func NewOrder(id, customerID string, items []OrderItem) (*Order, error) {
 // TODO: реализуй, ошибки — ErrEmptyCustomer / ErrNoItems / ErrInvalidItem.
 func (o *Order) Validate() error {
 	// TODO: реализуй.
+	if strings.TrimSpace(o.CustomerID) == "" {
+		return ErrEmptyCustomer
+	}
+
+	if len(o.Items) == 0 {
+		return ErrNoItems
+	}
+
+	for _, item := range o.Items {
+		if strings.TrimSpace(item.ProductID) == "" {
+			return ErrInvalidItem
+		}
+		if item.Quantity <= 0 {
+			return ErrInvalidItem
+		}
+
+		if item.Price < 0 {
+			return ErrInvalidItem
+		}
+	}
 	return nil
 }
 
@@ -72,7 +105,12 @@ func (o *Order) Validate() error {
 //
 // TODO: реализуй: сумма Quantity*Price.
 func (o *Order) RecalcTotal() {
-	// TODO: реализуй.
+	var total int64
+	for _, item := range o.Items {
+		total += item.Amount()
+	}
+
+	o.Total = total
 }
 
 // ApplyStatus применяет новый статус заказа.
@@ -81,8 +119,22 @@ func (o *Order) RecalcTotal() {
 //
 // TODO: реализуй машину переходов и обновление поля Status.
 func (o *Order) ApplyStatus(next OrderStatus) error {
-	// TODO: реализуй.
-	return nil
+	status_map := make(map[OrderStatus]map[OrderStatus]struct{})
+
+	add := func(key, val OrderStatus) {
+		if status_map[key] == nil {
+			status_map[key] = make(map[OrderStatus]struct{})
+		}
+		status_map[key][val] = struct{}{}
+	}
+	add(StatusNew, StatusValidated)
+	add(StatusNew, StatusCancelled)
+	add(StatusValidated, StatusPaid)
+	if _, ok := status_map[o.Status][next]; ok {
+		o.Status = next
+		return nil
+	}
+	return ErrInvalidTransition
 }
 
 // Amount — сумма позиции (для удобства вызывающего кода).
