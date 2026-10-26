@@ -388,7 +388,7 @@ async-обработчике вешает весь event loop). Обратная
 4. Дальше (урок 10): обработчики получат настоящие DTO, валидацию и
    маппинг ошибок — каркас уже готов, правится только `httpapi`.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [net/http](https://pkg.go.dev/net/http) — Server, Handler, таймауты.
 - [Cloudflare: The Complete Guide to Go net/http Timeouts](https://blog.cloudflare.com/the-complete-guide-to-golang-net-http-timeouts/) — канонический разбор таймаутов.

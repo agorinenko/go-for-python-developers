@@ -298,7 +298,7 @@ async with AIOKafkaProducer(bootstrap_servers="kafka:9092",
 4. Помним: это временная схема — на уроке 16 публикация переедет в
    transactional outbox, а `Transport` и сериализацию переиспользует реле.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Kafka documentation: main concepts](https://kafka.apache.org/documentation/#intro_concepts_and_terms) — топики, партиции, consumer groups.
 - [Kafka: exactly once semantics](https://kafka.apache.org/documentation/#semantics) — официальное определение гарантий.

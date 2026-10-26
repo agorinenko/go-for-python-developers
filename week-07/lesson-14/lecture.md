@@ -245,7 +245,7 @@ breaker) и одновременно пример того, как та же з�
 4. Дальше (неделя 8): события и outbox — там пригодится всё, что
    построили за недели 5–7.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [AWS Architecture Blog: Exponential Backoff and Jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/) — канонический разбор jitter.
 - [Google SRE Book: Addressing Cascading Failures](https://sre.google/sre-book/addressing-cascading-failures/) — каскадные отказы.

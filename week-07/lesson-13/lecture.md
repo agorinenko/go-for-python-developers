@@ -245,7 +245,7 @@ Python-стек тот же по форме: `.proto` → генерация (`g
 4. Второй proto: `api/catalog/v1/catalog.proto` с `GetProduct` — под
    клиент, который строим на уроке 14.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Protocol Buffers: Language Guide (proto3)](https://protobuf.dev/programming-guides/proto3/) — официальный гайд.
 - [buf](https://buf.build/docs/) — lint, breaking, generate.

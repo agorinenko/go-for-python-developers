@@ -252,7 +252,7 @@ nums := make([]int64, 1_000_000)     // 8 МБ, одна аллокация
    аллокаций теперь ловит CI.
 4. На следующем уроке — бенчмарки и pprof, чтобы измерить эффект.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Go slices: usage and internals](https://go.dev/blog/slices-intro) — официальный разбор слайсов.
 - [The Go Programming Language Specification: slice types](https://go.dev/ref/spec#Slice_types).

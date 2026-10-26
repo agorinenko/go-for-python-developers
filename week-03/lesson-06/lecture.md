@@ -255,7 +255,7 @@ fan-out первого этапа (N = GOMAXPROCS) с восстановлени
 `ctx`, проброс ошибок. Применение: пакетная переоценка заказов
 (`RecalcOrders`). Тесты — с `-race`.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Share Memory By Communicating](https://go.dev/blog/codelab-share) — идеология каналов.
 - [Go Concurrency Patterns: Pipelines and cancellation](https://go.dev/blog/pipelines) — паттерны с отменой.

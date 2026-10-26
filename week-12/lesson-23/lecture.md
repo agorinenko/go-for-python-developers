@@ -278,7 +278,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--worker
    доставляет события в redpanda.
 5. Образ помечаем тегом по git SHA — готово к CI (урок 24).
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Docker: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/) —
   официальная документация.

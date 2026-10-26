@@ -267,7 +267,7 @@ DataAnnotations — аналог validator-тегов с теми же плюс�
 3. Проверка контракта: `curl` с валидным/невалидным телом — `201`/`400`
    и схема ошибок; тесты `httptest` на каждый код ответа.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [encoding/json](https://pkg.go.dev/encoding/json) — теги, Marshaler, Decoder.
 - [JSON and Go](https://go.dev/blog/json) — официальный блог.

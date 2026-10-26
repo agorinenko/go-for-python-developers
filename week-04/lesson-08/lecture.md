@@ -251,7 +251,7 @@ if err := fetch(ctx); err != nil {
 4. С недели 5 каждый обработчик получает `r.Context()` — цепочка отмены
    «клиент → сервис → БД» замыкается.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [context package](https://pkg.go.dev/context) — документация и примеры.
 - [Go Concurrency Patterns: Context](https://go.dev/blog/context) — введение в контексты.

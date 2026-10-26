@@ -342,7 +342,7 @@ deployment, один процесс, Kestrel), поэтому всё сказа�
 5. Финальный аккорд курса: вся система из CAPSTONE.md — orders + catalog + payments +
    PostgreSQL + Kafka + Redis — в Kubernetes, собранная конвейером.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Kubernetes: Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/).
 - [Kubernetes: Managing Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).

@@ -251,7 +251,7 @@ wg.Wait()
 сбором результатов по индексам; `CreateOrder` использует её и отклоняет
 заказ при первой ошибке валидации. Тесты — с `-race`.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [A Journey into Go's Scheduler (design doc)](https://go.dev/s/go11sched) — G/P/M, work stealing.
 - [The Go scheduler (Ардан Лабс)](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html) — цикл статей.

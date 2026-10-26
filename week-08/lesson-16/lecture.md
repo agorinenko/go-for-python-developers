@@ -268,7 +268,7 @@ def create_order(payload):
    неудачная оплата → статус `cancelled` + компенсирующее событие.
 4. Неуспешные после N попыток сообщения — в DLQ с алертом.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Microservices.io: Transactional outbox](https://microservices.io/patterns/data/transactional-outbox.html) — каноническое описание паттерна.
 - [Microservices.io: Saga](https://microservices.io/patterns/data/saga.html) — choreography vs orchestration.

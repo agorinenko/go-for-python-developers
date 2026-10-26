@@ -262,7 +262,7 @@ wg.Wait()
 в итоговом проекте идёт с `-race`. На неделе 11 этот кэш переедет за Redis с
 singleflight — но интерфейс останется.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [The Go Memory Model](https://go.dev/ref/mem) — happens-before, полный текст.
 - [Data Race Detector](https://go.dev/doc/articles/race_detector) — как работает TSAN в Go.

@@ -327,7 +327,7 @@ thundering herd собственными руками.
    (неделя 3) и семафор вокруг обращений к каталогу.
 4. Добавляем метрику `http_requests_limited_total` и проверяем 429 под нагрузкой.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [golang.org/x/time/rate](https://pkg.go.dev/golang.org/x/time/rate) — token bucket.
 - [golang.org/x/sync/semaphore](https://pkg.go.dev/golang.org/x/sync/semaphore) и

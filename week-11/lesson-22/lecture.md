@@ -319,7 +319,7 @@ def get_order(order_id: str) -> dict: ...
 5. Проверка под нагрузкой (k6, урок 18): после прогрева — 99-й перцентиль на `GetOrder`
    без запросов в PostgreSQL.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [golang.org/x/sync/singleflight](https://pkg.go.dev/golang.org/x/sync/singleflight) —
   документация и примеры.

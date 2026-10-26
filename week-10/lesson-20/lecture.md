@@ -240,7 +240,7 @@ REQUESTS.labels(request.method, str(code)).inc()
 4. Метрики зависимостей: латентность PostgreSQL, публикаций Kafka, размер
    outbox-очереди; алерты — на 5xx, p95 > SLO, outbox-отставание.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [Prometheus: Metric Types](https://prometheus.io/docs/concepts/metric_types/) — counter/gauge/histogram/summary.
 - [Prometheus: Practices — cardinality](https://prometheus.io/docs/practices/naming/) — именование и метки.

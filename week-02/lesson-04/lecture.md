@@ -245,7 +245,7 @@ fakes/spies.
 3. Доводим покрытие `internal/service` до ≥ 90%: кейсы пустого клиента,
    пустых позиций, лимита в `ListOrders`, повторной отмены.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [testing package](https://pkg.go.dev/testing) — t.Run, t.Parallel, t.Cleanup, T.TempDir.
 - [Add a test (go.dev tutorial)](https://go.dev/doc/tutorial/add-a-test).

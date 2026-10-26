@@ -259,7 +259,7 @@ Go-сообщество в основном выбирает **тонкий сл
 3. Урок 12 добавит миграции таблиц и интеграционные тесты против
    реальной PostgreSQL в testcontainers.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [database/sql](https://pkg.go.dev/database/sql) — пул, транзакции, Null-типы.
 - [Go database/sql tutorial](https://go.dev/doc/tutorial/database-access) — официальный туториал.

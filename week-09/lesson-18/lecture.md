@@ -246,7 +246,7 @@ convert` для ETW.
    `POST /v1/orders`; сравнение p95 до/после.
 4. Пороги аллокаций из урока 17 остаются в CI — регрессии видно сразу.
 
-## Материалы для углубления
+## Материалы для изучения
 
 - [pprof](https://github.com/google/pprof/blob/main/doc/README.md) — официальная документация инструмента.
 - [Go Diagnostics](https://go.dev/doc/diagnostics) — обзор диагностики: profiling, tracing, runtime.
